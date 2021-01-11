@@ -6,9 +6,11 @@
 
 <!-- Badges -->
 
-<!-- <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/igooralm192/nlw-01">
-</p> -->
+<p align="center">
+  <a href="https://app.netlify.com/sites/bin2dec-iguzinho/deploys">
+    <img alt="Netlify building status" src="https://api.netlify.com/api/v1/badges/1d6b8c81-2979-4270-8b24-f41c7d5bdcdf/deploy-status">
+  </a>
+</p>
 
 <!-- Description -->
 
