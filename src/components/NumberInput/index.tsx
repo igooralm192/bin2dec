@@ -10,11 +10,15 @@ interface Props {
 }
 
 const NumberInput: React.FC<Props> = ({ placeholder, value, onChange }) => {
+  function handleChange(newValue: string) {
+    if (!Number.isNaN(Number(newValue))) onChange(newValue)
+  }
+
   return (
     <div className="input-container">
       <input
         value={String(value)}
-        onChange={e => onChange(e.target.value)}
+        onChange={e => handleChange(e.target.value)}
         placeholder={placeholder}
       />
     </div>
