@@ -1,8 +1,8 @@
 <!-- Logo -->
 
-<h6 align="center" style="font-family: Ubuntu; font-size: 59px; color: #333">
+<h1 align="center" style="font-family: Ubuntu; font-size: 59px; color: #333">
   Bin2Dec
-</h6>
+</h1>
 
 <!-- Badges -->
 
@@ -26,13 +26,12 @@
 
 # Índice
 
-- [Índice](#índice)
-  - [:bookmark: Sobre](#bookmark-sobre)
-  - [:computer: Demo](#computer-demo)
-  - [:rocket: Tecnologias](#rocket-tecnologias)
-  - [:book: O que aprendi](#book-o-que-aprendi)
-  - [:recycle: Como contribuir](#recycle-como-contribuir)
-  - [:memo: Licença](#memo-licença)
+- [Sobre](#sobre)
+- [Demo](#demo)
+- [Tecnologias](#tecnologias)
+- [O que aprendi](#o-que-aprendi)
+- [Como contribuir](#rcomo-contribuir)
+- [Licença](#licença)
 
 <a id="sobre"></a>
 
@@ -47,6 +46,7 @@ Esta versão vêm com uma funcionalidade extra que também permite a conversão 
 <a id="demo"></a>
 
 ## :computer: Demo
+
 Essa aplicação foi hospedada pelo [Netlify](https://www.netlify.com/) e pode ser encontrada aqui: [Bin2Dec](https://bin2dec-iguzinho.netlify.app/).
 
 <a id="tecnologias"></a>
@@ -63,7 +63,6 @@ Essa aplicação se utiliza das seguintes tecnologias:
 <a id="o-que-aprendi"></a>
 
 ## :book: O que aprendi
-
 
 - ### Componentização
 Foi possível visualizar a repetição de código sobre os componentes dos campos numéricos (inputs). Tendo isso em mente, foi possível **componentizar** da seguinte forma:
