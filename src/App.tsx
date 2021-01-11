@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 
 import NumberInput from './components/NumberInput'
+
 import useBinary from './hooks/useBinary'
 import useDecimal from './hooks/useDecimal'
+
+import binaryToDecimal from './utils/binaryToDecimal'
+import decimalToBinary from './utils/decimalToBinary'
 
 import './App.css'
 
@@ -13,36 +17,13 @@ const App: React.FC = () => {
   useEffect(() => {
     if (binary === undefined) return
 
-    const binaryDigits = String(binary)
-      .split('')
-      .map(digit => Number(digit))
-
-    let convertedDecimal = 0
-
-    for (let i = 0; i < binaryDigits.length; i += 1) {
-      const digit = binaryDigits[i]
-
-      convertedDecimal += digit * 2 ** (binaryDigits.length - i - 1)
-    }
-
-    handleDecimal(convertedDecimal)
+    handleDecimal(binaryToDecimal(binary))
   }, [binary, handleDecimal])
 
   useEffect(() => {
     if (decimal === undefined) return
 
-    let value = decimal
-
-    let convertedBinary = ''
-
-    while (value > 0) {
-      convertedBinary = (value % 2) + convertedBinary
-      value = Math.floor(value / 2)
-    }
-
-    if (convertedBinary === '') convertedBinary = '0'
-
-    handleBinary(convertedBinary)
+    handleBinary(decimalToBinary(decimal))
   }, [decimal, handleBinary])
 
   return (
