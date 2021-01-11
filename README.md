@@ -1,46 +1,161 @@
-# Getting Started with Create React App
+<!-- Logo -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center" style="font-family: Ubuntu; font-size: 59px; color: #333">
+  Bin2Dec
+</h1>
 
-## Available Scripts
+<!-- Badges -->
 
-In the project directory, you can run:
+<!-- <p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/igooralm192/nlw-01">
+</p> -->
 
-### `yarn start`
+<!-- Description -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h3 align="center">
+	🚀 O seu conversor predileto! 💥
+</h3>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<!-- Project Design -->
 
-### `yarn test`
+<p align="center">
+  <img alt="Project Design" width="650px" src="./.github/project-design.png" />
+<p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!-- Summary -->
 
-### `yarn build`
+# Índice
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Sobre](#sobre)
+- [Demo](#demo)
+- [Tecnologias](#tecnologias)
+- [O que aprendi](#o-que-aprendi)
+- [Como contribuir](#como-contribuir)
+- [Licença](#licenca)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<a id="sobre"></a>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## :bookmark: Sobre
 
-### `yarn eject`
+Binário é o sistema numérico no qual todos os computadores digitais são baseados. Portanto, é importante que os desenvolvedores entendam a matemática binária ou de base 2. O objetivo do Bin2Dec é fornecer prática e compreensão de como funcionam os cálculos binários.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Bin2Dec permite que o usuário digite 0's e 1's e obtenha uma conversão para decimais.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Esta versão vêm com uma funcionalidade extra que também permite a conversão de decimais para binários.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<a id="demo"></a>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## :computer: Demo
 
-## Learn More
+Essa aplicação foi hospedada pelo [Netlify](https://www.netlify.com/) e pode ser encontrada aqui: [Bin2Dec](https://bin2dec-iguzinho.netlify.app/).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<a id="tecnologias"></a>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## :rocket: Tecnologias
+
+Essa aplicação se utiliza das seguintes tecnologias:
+
+-  [TypeScript](https://www.typescriptlang.org/)
+-  [ReactJS](https://reactjs.org/)
+-  [ESLint](https://eslint.org/) (Padronização de código)
+-  [Prettier](https://prettier.io/) (Formatação de código)
+
+<a id="o-que-aprendi"></a>
+
+## :book: O que aprendi
+
+- ### Componentização
+Foi possível visualizar a repetição de código sobre os componentes dos campos numéricos (inputs). Tendo isso em mente, foi possível **componentizar** da seguinte forma:
+```jsx
+const NumberInput: React.FC<Props> = ({ placeholder, value, onChange }) => {
+  function handleChange(newValue: string) {
+    if (!Number.isNaN(Number(newValue))) onChange(newValue)
+  }
+
+  return (
+    <div className="input-container">
+      <input
+        value={String(value)}
+        onChange={e => handleChange(e.target.value)}
+        placeholder={placeholder}
+      />
+    </div>
+  )
+}
+```
+Dessa forma, pode-se respeitar o **isolamento de código** e criar um componente **reutilizável**.
+
+- ### React Hooks
+Graças aos conceitos dos Hooks, foi possível respeitar um dos princípios da programação **SOLID** chamado **Single Responsability Principle**, onde cada classe/função deve ser especializada em um único assunto.
+
+Neste caso, toda a trativa do campo binário foi isolada no hook **useBinary**.
+
+```jsx
+const useBinary = (): ReturnType => {
+  const [binary, setBinary] = useState<string>()
+
+  const handleBinary = useCallback((value: string | number) => {
+    if (value === undefined) return
+
+    const serializedValue = String(value)
+      .split('')
+      .map(digit => Number(digit))
+      .filter(digit => digit <= 1)
+      .join('')
+
+    setBinary(oldBinary => {
+      if (String(value) === oldBinary) return oldBinary
+
+      return serializedValue
+    })
+  }, [])
+
+  return {
+    binary,
+    handleBinary,
+  }
+}
+```
+
+- ### Funções Puras
+Esse conceito trata-se de que, para uma entrada, uma função irá sempre retornará o mesmo resultado sem efeitos colaterais.
+
+Neste caso, foi possível isolar o cálculo de conversão de binário para decimal, que sempre retornará o mesmo resultado dada a mesma entrada.
+
+```typescript
+export default function binaryToDecimal(binary: string): number {
+  const binaryDigits = String(binary)
+    .split('')
+    .map(digit => Number(digit))
+
+  let convertedDecimal = 0
+
+  for (let i = 0; i < binaryDigits.length; i += 1) {
+    const digit = binaryDigits[i]
+
+    convertedDecimal += digit * 2 ** (binaryDigits.length - i - 1)
+  }
+
+  return convertedDecimal
+}
+```
+<a id="como-contribuir"></a>
+
+## :recycle: Como contribuir
+
+- Crie um fork desse repositório,
+- Crie uma branch com o nome da sua feature: `git checkout -b my-feature`
+- Faça um commit das suas alterações: `git commit -m 'feat: My new feature'`
+- Faça um push da sua branch: `git push origin my-feature`
+
+
+<a id="licenca"></a>
+
+## :memo: Licença
+
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+<p align="center">
+  Feito com ❤️ por <a href="https://github.com/igooralm192" target="_blank">IguzinhoTV</a>!!
+</p>
