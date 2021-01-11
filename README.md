@@ -1,8 +1,8 @@
 <!-- Logo -->
 
-<h1 align="center" style="font-family: Ubuntu; font-size: 49px">
+<h6 align="center" style="font-family: Ubuntu; font-size: 59px; color: #333">
   Bin2Dec
-</h1>
+</h6>
 
 <!-- Badges -->
 
