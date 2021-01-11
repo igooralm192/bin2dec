@@ -1,0 +1,14 @@
+.input-container:first-child {
+  margin-right: 20px;
+}
+
+.input-container>input {
+  background-color: transparent;
+  outline: none;
+  border: 2px solid white;
+  padding: 10px;
+  width: 100%;
+  font-size: 24pt;
+  color: white;
+  font-family: Ubuntu;
+}
