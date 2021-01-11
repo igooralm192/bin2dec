@@ -11,11 +11,10 @@
 </p> -->
 
 <!-- Description -->
+
 <h3 align="center">
 	🚀 O seu conversor predileto! 💥
 </h3>
-
-
 
 <!-- Project Design -->
 
@@ -29,10 +28,9 @@
 
 - [Índice](#índice)
   - [:bookmark: Sobre](#bookmark-sobre)
+  - [:computer: Demo](#computer-demo)
   - [:rocket: Tecnologias](#rocket-tecnologias)
   - [:book: O que aprendi](#book-o-que-aprendi)
-      - [React Hooks](#react-hooks)
-      - [Funções Puras](#funções-puras)
   - [:recycle: Como contribuir](#recycle-como-contribuir)
   - [:memo: Licença](#memo-licença)
 
@@ -45,6 +43,11 @@ Binário é o sistema numérico no qual todos os computadores digitais são base
 Bin2Dec permite que o usuário digite 0's e 1's e obtenha uma conversão para decimais.
 
 Esta versão vêm com uma funcionalidade extra que também permite a conversão de decimais para binários.
+
+<a id="demo"></a>
+
+## :computer: Demo
+Essa aplicação foi hospedada pelo [Netlify](https://www.netlify.com/) e pode ser encontrada aqui: [Bin2Dec](https://bin2dec-iguzinho.netlify.app/).
 
 <a id="tecnologias"></a>
 
@@ -62,8 +65,8 @@ Essa aplicação se utiliza das seguintes tecnologias:
 ## :book: O que aprendi
 
 
-- #### Componentização
-Foi possível visualizar a repetição de código sobre os componentes dos campos numéricos (inputs). Tendo isso em mente, foi possível "componentizar" da seguinte forma:
+- ### Componentização
+Foi possível visualizar a repetição de código sobre os componentes dos campos numéricos (inputs). Tendo isso em mente, foi possível **componentizar** da seguinte forma:
 ```jsx
 const NumberInput: React.FC<Props> = ({ placeholder, value, onChange }) => {
   function handleChange(newValue: string) {
@@ -81,12 +84,12 @@ const NumberInput: React.FC<Props> = ({ placeholder, value, onChange }) => {
   )
 }
 ```
-Dessa forma, pude respeitar o **isolamento de código** e criar um componente **reutilizável**.
+Dessa forma, pode-se respeitar o **isolamento de código** e criar um componente **reutilizável**.
 
-#### React Hooks
+- ### React Hooks
 Graças aos conceitos dos Hooks, foi possível respeitar um dos princípios da programação **SOLID** chamado **Single Responsability Principle**, onde cada classe/função deve ser especializada em um único assunto.
 
-Neste caso, toda a trativa do campo binário foi isolado no hook **useBinary**.
+Neste caso, toda a trativa do campo binário foi isolada no hook **useBinary**.
 
 ```jsx
 const useBinary = (): ReturnType => {
@@ -115,10 +118,10 @@ const useBinary = (): ReturnType => {
 }
 ```
 
-#### Funções Puras
-Esse conceito trata-se de que, para uma entrada, uma função irá sempre retornar o mesmo resultado sem efeitos colaterais.
+- ### Funções Puras
+Esse conceito trata-se de que, para uma entrada, uma função irá sempre retornará o mesmo resultado sem efeitos colaterais.
 
-Neste caso, foi possível isolar o cálculo de conversão de binário para decimal, que sempre retornar o mesmo resultado dada a mesma entrada.
+Neste caso, foi possível isolar o cálculo de conversão de binário para decimal, que sempre retornará o mesmo resultado dada a mesma entrada.
 
 ```typescript
 export default function binaryToDecimal(binary: string): number {
