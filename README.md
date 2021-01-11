@@ -30,8 +30,8 @@
 - [Demo](#demo)
 - [Tecnologias](#tecnologias)
 - [O que aprendi](#o-que-aprendi)
-- [Como contribuir](#rcomo-contribuir)
-- [Licença](#licença)
+- [Como contribuir](#como-contribuir)
+- [Licença](#licenca)
 
 <a id="sobre"></a>
 
